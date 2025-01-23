@@ -3,6 +3,10 @@ name: Create Artifact
 on:
   workflow_dispatch:
   pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
 
 jobs:
   create-artifact:
