@@ -21,4 +21,6 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
 
       - name: List files & directories
-        run: ls -la
+        run: |
+          unzip artifact.zip
+          ls -la
