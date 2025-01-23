@@ -10,12 +10,15 @@ jobs:
   workflow-run:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request'}}
+    permissions:
+      actions: read
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: artifact
-          run-id: ${{ github.event.workflow_run.id}}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
 
       - name: List files & directories
         run: ls -la
